@@ -1,0 +1,16 @@
+.gallery-img{
+    height: 100px;
+    width: 100px;
+}
+
+.gallery{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gallery-img img{
+    object-fit: cover;
+    height: 100%;
+    cursor: pointer;
+}
+

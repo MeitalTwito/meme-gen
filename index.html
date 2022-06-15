@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Meme Gen</title>
+</head>
+
+<body onload="init()">
+    <header class="main-header">header</header>
+    <aside>
+        <button onclick="onGenerateRandomMeme()" class="btn editor-btn line-change-btn"><img style="height: 24px;" src="essets/icons/provision.svg" alt="" srcset=""></button>
+        <section class="gallery">
+        </section>
+    </aside>
+
+    <main class="editor-media">
+        <canvas id="canvas" height="500" width="500"></canvas>
+    </main>
+    <aside class="editor-bar">
+        editor
+
+        <form onsubmit="renderTextInput(event)">
+            <input type="text" name="line-txt" class="line-txt" placeholder="eneter your text here" />
+            <button>submit</button>
+        </form>
+        <input oninput="renderLineColor(value)" type="color" class="line-color" id="line-color">
+        <button onclick="renderLineSize(1)" class="btn editor-btn text-size-btn"> + </button>
+        <button onclick="renderLineSize(-1)"class="btn editor-btn text-size-btn"> - </button>
+        <button onclick="onChangeLine()" class="btn editor-btn line-change-btn"><img style="height: 24px;" src="essets/icons/change.svg" alt="" srcset=""></button>
+        <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg"><img style="height: 24px;" src="essets/icons/download.svg" alt="" srcset=""></a>
+        <button onclick="OnSaveMeme()" class="btn editor-btn save-meme-btn"><img style="height: 24px;" src="essets/icons/floppy-disk.svg" alt="" srcset=""></button>
+        <a href="#" class="btn" onclick="renderUserMemes()">My Memes</a>
+        <section class="emoji-gallery">
+            <a onclick="OnAddEmoji('😃')" href="#">😃</a>
+        </section>
+
+    </aside>    
+    <section class="saved-memes">saved memes</section>
+    <footer>footer</footer>
+    <script src="js/services/utils.js"></script>
+    <script src="js/services/storage.service.js"></script>
+    <script src="js/services/galleryService.js"></script>
+    <script src="js/services/memeService.js"></script>
+     <script src="js/controllers/galleryController.js"></script>
+    <script src="js/controllers/memeController.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

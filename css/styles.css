@@ -1,0 +1,4 @@
+/* Base */
+@import url(base/base.css);
+
+@import url(components/gallery.css);
