@@ -4,4 +4,52 @@
 
 body{
     margin: 0;
+    font-family: 'Assistant', sans-serif;
+}
+
+.hidden{
+    display: none;
+}
+
+a{
+    color: black;
+    text-decoration: none;
+}
+
+canvas{
+    border-radius: 0.5em;
+}
+
+
+.page ul {
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+
+.canvas-container{
+    height: 100%;
+}
+
+.tools-box img{
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.tools-box input, .tools-box select{
+    width: 200px;
+    margin-bottom: 1em;
+    border-radius: 1em;
+    border: none;
+    background-color: #f5f5f5;
+    padding: 0.5em;
+}
+
+.line-control{
+    margin-block-end: 2em;
+}
+
+.line-control-btns, .text-control-btns{
+    gap: 0.2em;
+    flex-wrap: wrap;
 }

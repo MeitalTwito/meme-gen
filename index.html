@@ -7,40 +7,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
     <title>Meme Gen</title>
-</head>
 
-<body onload="init()">
-    <header class="main-header">header</header>
-    <aside>
-        <button onclick="onGenerateRandomMeme()" class="btn editor-btn line-change-btn"><img style="height: 24px;" src="essets/icons/provision.svg" alt="" srcset=""></button>
-        <section class="gallery">
-        </section>
-    </aside>
+<body onload="init()" class="modal-open">
 
-    <main class="editor-media">
-        <canvas id="canvas" height="500" width="500"></canvas>
-    </main>
-    <aside class="editor-bar">
-        editor
+    <section class="modal flex align-center">
+        <div class="modal-content">
+            <nav class="modal-head flex space-between">
+                <div class="logo flex align-center">Meme<span>Gen</span>.</div>
+                
+                <ul class="modal-nav clean-list flex align-center">
+                    <li class="page-btn" onclick="renderUserMemes()">Memes</li>
+                    <li class="page-btn" onclick="onOpenGallery()">Gallery</li>
+                    <li class="round-btn" onclick="onGenerateRandomMeme()">Random Meme</li>
+                </ul>
+            </nav>
+            
+            <div class="gallery">
+            </div>
+        </div>
+    </section>
+    <div class="grid-container">
+        <header class="main-header flex space-between">
+            <div class="logo">Meme<span>Gen</span>.</div>
+            <nav class="flex align-center">
+                <ul class="clean-list flex">
+                    <li class="header-btn" ><a href="#" onclick="OnDownloadMeme(this)" download="my-img.jpg"> <img src="assets/icons/download.svg" alt="" srcset=""> download</a></li>
+                    <li class="header-btn" onclick="OnSaveMeme()"><img src="assets/icons/diskette.svg" alt="" srcset=""> save Meme</li>
+                </ul>
+            </nav>
+        </header>
+        <div class="page">
+            <ul class="clean-list flex align-center">
+                <li class="page-nav-btn" onclick="renderUserMemes()"><img src="assets/icons/open-folder.svg" alt="" srcset=""></li>
+                <li class="page-nav-btn" onclick="onOpenGallery()"><img src="assets/icons/add-file.svg" alt="" srcset=""></li>
+            </ul>
+        </div>
 
-        <form onsubmit="renderTextInput(event)">
-            <input type="text" name="line-txt" class="line-txt" placeholder="eneter your text here" />
-            <button>submit</button>
-        </form>
-        <input oninput="renderLineColor(value)" type="color" class="line-color" id="line-color">
-        <button onclick="renderLineSize(1)" class="btn editor-btn text-size-btn"> + </button>
-        <button onclick="renderLineSize(-1)"class="btn editor-btn text-size-btn"> - </button>
-        <button onclick="onChangeLine()" class="btn editor-btn line-change-btn"><img style="height: 24px;" src="essets/icons/change.svg" alt="" srcset=""></button>
-        <a href="#" class="btn" onclick="downloadImg(this)" download="my-img.jpg"><img style="height: 24px;" src="essets/icons/download.svg" alt="" srcset=""></a>
-        <button onclick="OnSaveMeme()" class="btn editor-btn save-meme-btn"><img style="height: 24px;" src="essets/icons/floppy-disk.svg" alt="" srcset=""></button>
-        <a href="#" class="btn" onclick="renderUserMemes()">My Memes</a>
-        <section class="emoji-gallery">
-            <a onclick="OnAddEmoji('😃')" href="#">😃</a>
-        </section>
+        <aside class="img-holder">
+            
+            <section class="img-box-container flex">gallery</section>
+        </aside>
+        <main class="editor-media">
+            <section class="canvas-container flex align-center justify-center">
+                <canvas id="canvas" height="500" width="500"></canvas>
+            </section>
+                  
+        </main>
+        <aside class="tools-box flex align-center">
+            <div class="line-control">
+                <form oninput="renderTextInput()" onsubmit="clearInputBox(event)">
+                    <input type="text" name="line-txt" class="line-txt" placeholder="eneter your text here" />
+                </form>
+    
+                <ul class="line-control-btns clean-list flex">
+                    <li class="tool-box-btn" onclick="OnMoveLine(1)"><img src="assets/icons/down-arrow.svg" alt="" srcset=""></li>
+                    <li class="tool-box-btn" onclick="OnMoveLine(-1)"><img src="assets/icons/up-arrow.svg" alt="" srcset=""></li>
+                    <li class="tool-box-btn" onclick="onChangeLine()"><img src="assets/icons/change.svg" alt="" srcset=""></li>
+                    <li class="tool-box-btn" onclick="onAddLine()"><img src="assets/icons/plus.svg" alt=""></li>
+                    <li class="tool-box-btn" onclick="OnDeleteLine()"><img src="assets/icons/bin.svg" alt="" srcset=""></li>
+                </ul>
 
-    </aside>    
-    <section class="saved-memes">saved memes</section>
-    <footer>footer</footer>
+            </div>
+            <div class="text-control">
+                <select onchange="changeFont(value)" name="fonts" id="fonts">
+                    <option value="impact">Impact</option>
+                    <option value="Arial">Arial</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                </select>
+                <ul class="text-control-btns clean-list flex">
+                    <li class="tool-box-btn" onclick="alignText('left')">L</li>
+                    <li class="tool-box-btn" onclick="alignText('center')">C</li>
+                    <li class="tool-box-btn" onclick="alignText('right')">R</li>
+                    <li class="tool-box-btn"><input oninput="renderLineColor(value)" type="color" class="line-color" id="line-color"></li>
+                    <li class="tool-box-btn" onclick="renderLineSize(1)">+</li>
+                    <li class="tool-box-btn" onclick="renderLineSize(-1)">-</li>
+                </ul>
+            </div>
+        </aside>    
+    </div>
     <script src="js/services/utils.js"></script>
     <script src="js/services/storage.service.js"></script>
     <script src="js/services/galleryService.js"></script>

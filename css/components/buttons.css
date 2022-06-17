@@ -1,0 +1,31 @@
+.header-btn {
+    text-transform: uppercase;
+    font-weight: 400;
+    cursor: pointer;
+    margin-inline-end: 1em;
+}
+
+.page-nav-btn{
+    background-color: #f5f5f5;
+    max-width: 4em;
+    border-radius: 0.2em;
+    text-align: center;
+    padding: 1em;
+    cursor: pointer;
+
+}
+.page-nav-btn img{
+    max-width: 2em;
+}
+
+.tool-box-btn{
+    cursor: pointer;
+    background-color: #f5f5f5;
+    border-radius: 0.2em;
+    padding: 0.5em;
+    width: 2.5em;
+    height: 2.5em;
+    line-height: 1em;
+    vertical-align: center;
+    text-align: center;
+}
