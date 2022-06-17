@@ -12,8 +12,13 @@
     text-align: center;
     padding: 1em;
     cursor: pointer;
-
+    transition: background-color .8s;
 }
+
+.page-nav-btn:hover{
+    background-color: #e0dfec;
+}
+
 .page-nav-btn img{
     max-width: 2em;
 }
@@ -28,4 +33,10 @@
     line-height: 1em;
     vertical-align: center;
     text-align: center;
+    transition: background-color .8s;
+
+}
+
+.tool-box-btn:hover{
+    background-color: #e0dfec;
 }

@@ -31,8 +31,8 @@
             <div class="logo">Meme<span>Gen</span>.</div>
             <nav class="flex align-center">
                 <ul class="clean-list flex">
-                    <li class="header-btn" ><a href="#" onclick="OnDownloadMeme(this)" download="my-img.jpg"> <img src="assets/icons/download.svg" alt="" srcset=""> download</a></li>
-                    <li class="header-btn" onclick="OnSaveMeme()"><img src="assets/icons/diskette.svg" alt="" srcset=""> save Meme</li>
+                    <li class="download-btn header-btn" > <img src="assets/icons/download.svg" alt="" srcset=""> <span>download</span></li>
+                    <li class="header-btn" onclick="OnSaveMeme()"><img class="test" src="assets/icons/diskette.svg" alt="" srcset=""> <span>save Meme</span></li>
                 </ul>
             </nav>
         </header>
@@ -76,12 +76,12 @@
                     <option value="Times New Roman">Times New Roman</option>
                 </select>
                 <ul class="text-control-btns clean-list flex">
-                    <li class="tool-box-btn" onclick="alignText('left')">L</li>
-                    <li class="tool-box-btn" onclick="alignText('center')">C</li>
-                    <li class="tool-box-btn" onclick="alignText('right')">R</li>
+                    <li class="tool-box-btn" onclick="alignText('left')"><img src="assets/icons/left-text-alignment-option.svg" alt="" srcset=""></li>
+                    <li class="tool-box-btn" onclick="alignText('center')"><img src="assets/icons/centered-text-of-alignment-button.svg" alt="" srcset=""></li>
+                    <li class="tool-box-btn" onclick="alignText('right')"><img src="assets/icons/right-text-alignment.svg" alt="" srcset=""></li>
                     <li class="tool-box-btn"><input oninput="renderLineColor(value)" type="color" class="line-color" id="line-color"></li>
-                    <li class="tool-box-btn" onclick="renderLineSize(1)">+</li>
-                    <li class="tool-box-btn" onclick="renderLineSize(-1)">-</li>
+                    <li class="tool-box-btn" onclick="renderLineSize(1)"><img src="assets/icons/increase-font-size.svg" alt="" srcset=""></li>
+                    <li class="tool-box-btn" onclick="renderLineSize(-1)"><img src="assets/icons/decrease-font-size.svg" alt="" sizes="" srcset=""></li>
                 </ul>
             </div>
         </aside>    

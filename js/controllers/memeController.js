@@ -51,7 +51,7 @@ function drawText(line, posY) {
 
 function drawLine(line, idx, slectedIdx) {
     var yStart = line.pos
-    if (idx === slectedIdx) {
+    if (idx === slectedIdx && !gIsDownload) {
         gCtx.rect(0, yStart, gCanvas.width, line.size*LINESPACE)
         gCtx.stroke()
     }
@@ -113,16 +113,31 @@ function alignText(value) {
 
 
 // these functions handle downloading, sharing and uploading memes 
-function OnDownloadMeme(elLink) {
-    removeSelection()
-    var imgContent = gCanvas.toDataURL('image/jpeg')// image/jpeg the default format
-    elLink.href = imgContent
+function OnDownloadMeme() {
+    _hideSelectionBorder()
+    setTimeout(() => {
+        const imgContent = gCanvas.toDataURL('image/jpeg')// image/jpeg the default format
+        const link = document.createElement('a')
+        link.href = imgContent
+        link.download = 'my-meme.jpg'
+        link.click()
+    }, 1000);
+
+    setTimeout(() => {
+        _showSelectionBorder()
+    }, 3000);
 }
 
-function removeSelection() {
+function _hideSelectionBorder() {
     gIsDownload = true
     renderMeme()
 }
+
+function _showSelectionBorder() {
+    gIsDownload = false
+    renderMeme()
+}
+
 
 
 // these functions handle saving and loading of memes 

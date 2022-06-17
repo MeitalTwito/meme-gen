@@ -33,6 +33,7 @@ function addListeners() {
 }
 
 function addMouseListeners() {
+    document.querySelector('.download-btn').addEventListener('click', OnDownloadMeme)
     gCanvas.addEventListener('mousemove', onMove)
     gCanvas.addEventListener('mousedown', onDown)
     gCanvas.addEventListener('mouseup', onUp)

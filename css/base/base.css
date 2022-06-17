@@ -16,6 +16,10 @@ a{
     text-decoration: none;
 }
 
+input{
+    text-align: center;
+}
+
 canvas{
     border-radius: 0.5em;
 }
@@ -37,7 +41,7 @@ canvas{
 }
 
 .tools-box input, .tools-box select{
-    width: 200px;
+    width: 100%;
     margin-bottom: 1em;
     border-radius: 1em;
     border: none;
