@@ -11,7 +11,6 @@
     pointer-events: none;
     transition: opacity .6s;
 
-
     background: rgb(223, 223, 223);
     background: linear-gradient(339deg, rgba(223, 223, 223, 1) 16%, rgba(245, 245, 245, 1) 90%);
 }
@@ -53,16 +52,8 @@ ul.modal-nav .page-btn {
 }
 
 ul.modal-nav .page-btn:hover {
-    width: auto;
-    height: 100px;
-    line-height: 100px;
-    vertical-align: center;
     box-shadow: inset 0px 7px 0 0 #715dfd;
     color: #715dfd;
-    margin-inline-start: 10px;
-    cursor: pointer;
-    padding-inline-start: 1em;
-    padding-inline-end: 1em;
 }
 
 ul.modal-nav .round-btn {

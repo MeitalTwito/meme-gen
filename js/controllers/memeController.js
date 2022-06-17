@@ -2,6 +2,7 @@
 console.log('meme controller loaded');
 
 const LINESPACE = 1.5
+
 var gCanvas
 var gCtx
 var gFont
@@ -13,29 +14,31 @@ function renderMeme() {
     var img = new Image()
     img.src = `assets/meme-img/${meme.selectedImgId}.jpg`;
     img.onload = () => {
-        gCanvas.height = img.height * gCanvas.width / img.width //Support using various aspect-ratio of images
-        gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height) //img,x,y,xend,yend
+        gCanvas.height = img.height * gCanvas.width / img.width // Support using various aspect-ratio of images
+        gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height) //img, starting point x, starting point y, width ,height 
         lines.forEach((line, idx) => {
-            CheckIfNewLine(line, idx)
+            updateLinePos(line, idx)
             drawLine(line, idx, meme.selectedLineIdx)
         })
     }
 }
 
+// These function render the meme text lines and selection rectangle 
 function drawText(line, posY) {
     // horisontal location 
-    var MarginX = line.size / 2 // distance from right or left
+    var marginX = line.size / 2 // sets line margin on x 
     var x = gCanvas.width / 2 // defult: center
+    
     switch (line.align) {
         case 'right':
-            x = gCanvas.width - MarginX
+            x = gCanvas.width - marginX
             break;
         case 'left':
-            x = MarginX
+            x = marginX
             break;
     }
 
-    var marginY = line.size / 10 //position text at line vertical center
+    var marginY = line.size / 10 // position text at line vertical center
     var y = posY + line.size + marginY
 
     gCtx.textAlign = line.align
@@ -48,7 +51,7 @@ function drawText(line, posY) {
 
 function drawLine(line, idx, slectedIdx) {
     var yStart = line.pos
-    if (idx === slectedIdx && !gIsDownload) {
+    if (idx === slectedIdx) {
         gCtx.rect(0, yStart, gCanvas.width, line.size*LINESPACE)
         gCtx.stroke()
     }
@@ -56,6 +59,7 @@ function drawLine(line, idx, slectedIdx) {
 }
 
 
+// thses functions handles user input
 function renderTextInput() { // Changes the text of a selected line while typing
     const elTxt = document.querySelector('[name=line-txt]')
     const txt = elTxt.value
@@ -69,6 +73,8 @@ function clearInputBox(ev){ // clears the input filed after submitting the text
     elTxt.value = ''
 }
 
+
+// these functions handle user text prefrences 
 function renderLineColor(value) {
     setLineColor(value)
     renderMeme()
@@ -105,6 +111,8 @@ function alignText(value) {
     renderMeme()
 }
 
+
+// these functions handle downloading, sharing and uploading memes 
 function OnDownloadMeme(elLink) {
     removeSelection()
     var imgContent = gCanvas.toDataURL('image/jpeg')// image/jpeg the default format
@@ -117,31 +125,9 @@ function removeSelection() {
 }
 
 
+// these functions handle saving and loading of memes 
 function OnSaveMeme() {
     saveMeme()
-}
-
-function renderUserMemes() {
-    
-
-    var memes = loadUserMemes()
-    if (!memes) return
-
-    var strHTMLs = []
-
-    memes.forEach((meme, idx) => {
-        var strHtml = `<div class="gallery-img }">
-        <img onclick="OnMemeLoad(${idx})" src="assets/meme-img/${meme.selectedImgId}.jpg" alt="" srcset="">
-        </div>`
-        strHTMLs.push(strHtml)
-    })
-
-    var elUserMemes = document.querySelector('.gallery')
-    elUserMemes.innerHTML = strHTMLs.join('')
-    var elImgBox = document.querySelector('.img-box-container')
-    elImgBox.classList.add('hidden')
-    renderImgBox()  
-    document.body.classList.add('modal-open');
 }
 
 function OnMemeLoad(idx) {

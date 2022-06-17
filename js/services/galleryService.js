@@ -33,7 +33,5 @@ function getRandomImg() {
 }
 
 function getImgById(idx) {
-
     return gImgs.find(img => img.id === idx)
-
 }

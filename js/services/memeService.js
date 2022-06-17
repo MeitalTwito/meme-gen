@@ -20,18 +20,16 @@ const memesSentences = [
     'JS what is this?',
     'Write hello world , add to cv 7 years experienced',
 ]
-
-const EMOJISTIKERS = ['😃', '😃']
+const DEFULT_MEME_LINE = {txt: `Text Here`,size: 40,align: 'left',color: 'white'}
 const MEME_KEY = 'SavedMemesDB'
+
 
 var gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
     lines: []
 }
-
 var gLine = gMeme.lines[0]
-
 var gLineIdx
 var gUserMemes
 var gCurrMeme = {
@@ -39,6 +37,7 @@ var gCurrMeme = {
     idx: 0
 }
 
+// These Functions give the meme controller accsees to service globals
 function getMeme() {
     return gMeme
 }
@@ -47,6 +46,8 @@ function getSelectedLine() {
     return gMeme.lines[gMeme.selectedLineIdx]
 }
 
+
+// these functions set the user prefrences to meme txt
 function setLineTxt(txt) {
     gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
@@ -66,14 +67,10 @@ function setLineSize(direction) {
 
 function setLineAlignment(value) {
     gMeme.lines[gMeme.selectedLineIdx].align = value
-    console.log(gMeme.lines[gMeme.selectedLineIdx].align);
 }
 
-function setLinePos(direction) {
-    console.log('hello');
 
-}
-
+// these functions control the meme lines
 function changeLines() {
     gLineIdx++
     if (gMeme.lines.length <= gLineIdx) {
@@ -81,55 +78,44 @@ function changeLines() {
     }
     gMeme.selectedLineIdx = gLineIdx
     gLine = gMeme.lines[gLineIdx]
-    console.log(gLine);
 }
 
-function createMeme(imgObj, isRandom) {
-
-    var meme = {
-        selectedImgId: imgObj.id,
-        selectedLineIdx: 0,
-        lines: []
-    }
-
-    meme.lines = createLines(isRandom)
-
-    gMeme = meme
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    gMeme.selectedLineIdx = gLineIdx = 0
 }
 
-function createLines(isRandom) {
-    var lines = []
-    var line
-    var lineNum
-    if (isRandom) {
-        lineNum = getLinesNum()
-        var lineSize = Math.random() * 100
-        for (var i = 0; i < lineNum; i++) {
-            line = {
-                txt: memesSentences[getRandomInt(0, memesSentences.length)],
-                size: lineSize,
-                align: 'center',
-                color: getRandomHex(),
-            }
-            lines.push(line)
+function moveLine(line, direction) {
+    line.pos += line.size*direction
+}
+
+function addLine() {
+    var line = _createLines(false, 1)
+    gMeme.lines.push(...line)
+    gMeme.selectedLineIdx = gLineIdx = (gMeme.lines.length -1 < 0) ? 0:gMeme.lines.length -1
+}
+
+function updateLinePos(line, idx) {
+    var y 
+    if (line.pos === undefined){
+        switch (idx) {
+            case 0:
+                y = 0
+                break;
+            case 1:
+                y = gCanvas.height - line.size * LINESPACE
+                break;
+            default:
+                y = (gCanvas.height - line.size) / 2
+                break;
         }
-    } else {
-        lineNum = 2
-        for (var i = 0; i < lineNum; i++) {
-            line = {
-                txt: `Text Area ${i + 1}`,
-                size: 40,
-                align: 'left',
-                color: 'white',
-            }
-            lines.push(line)
-        }
+        line.pos = y
+        return
     }
-
-
-    return lines
 }
 
+
+// these functions handles saving and loading memes
 function saveMeme() {
     var savedMeme = {
         selectedImgId: gMeme.selectedImgId,
@@ -156,6 +142,13 @@ function saveMeme() {
     saveToStorage(MEME_KEY, gUserMemes)
 }
 
+function resetCurrMeme() {
+    gCurrMeme = {
+        isLoaded: false,
+        idx: 0
+    }
+}
+
 function loadUserMemes() {
     if (!loadFromStorage(MEME_KEY)) return false;
     gUserMemes = loadFromStorage(MEME_KEY)
@@ -166,62 +159,56 @@ function setLoadedMeme(idx) {
     gMeme = gUserMemes[idx]
     gCurrMeme.isLoaded = true
     gCurrMeme.idx = idx
-
 }
 
 function _saveMemesToStorage() {
     saveToStorage(MEME_KEY, gUserMemes)
 }
 
-function resetCurrMeme() {
-    gCurrMeme = {
-        isLoaded: false,
-        idx: 0
+
+// These functions create new memes and meme lines
+function _createMeme(imgObj, isRandom) {
+    var meme = {
+        selectedImgId: imgObj.id,
+        selectedLineIdx: 0,
+        lines: []
     }
+    meme.lines = _createLines(isRandom)
+    gMeme = meme
 }
 
-function deleteLine() {
-    console.log(gMeme.selectedLineIdx);
-    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
-    gMeme.selectedLineIdx = gLineIdx = 0
-
-}
-
-function CheckIfNewLine(line, idx) {
-    var y 
-    if (line.pos === undefined){
-        console.log('hi');
-        switch (idx) {
-            case 0:
-                y = 0
-                break;
-            case 1:
-                y = gCanvas.height - line.size * LINESPACE
-                break;
-            default:
-                y = (gCanvas.height - line.size) / 2 * LINESPACE
-                break;
+function _createLines(isRandom, lineNum = 2) {
+    // creating meme lines 
+    var lines = []
+    var line
+    if (isRandom) {
+        // handles random meme
+        lineNum = getLinesNum()
+        var lineSize = Math.random() * 100
+        for (var i = 0; i < lineNum; i++) {
+            line = {
+                txt: memesSentences[getRandomInt(0, memesSentences.length)],
+                size: lineSize,
+                align: 'center',
+                color: getRandomHex(),
+            }
+            lines.push(line)
         }
-        line.pos = y
-        return
+    } else {
+        // Defult Meme Line
+        for (var i = 0; i < lineNum; i++) {
+            line = {
+                txt: DEFULT_MEME_LINE.txt,
+                size: DEFULT_MEME_LINE.size,
+                align: DEFULT_MEME_LINE.align,
+                color: DEFULT_MEME_LINE.color,
+            }
+            lines.push(line)
+        }
     }
-
+    return lines
 }
 
-function moveLine(line, direction) {
-    line.pos += line.size*direction
-}
 
-function addLine() {
-    var referenceLine = gMeme.lines[gMeme.selectedLineIdx]
-    var line = {
-        txt: `New Text`,
-        size: referenceLine.size,
-        align: referenceLine.align,
-        color: referenceLine.color,
-        pos: gCanvas.height /2
-    }
-    gMeme.lines.push(line)
-    gMeme.selectedLineIdx = gLineIdx = gMeme.lines.length -1
 
-}
+

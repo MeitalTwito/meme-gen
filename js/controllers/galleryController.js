@@ -2,6 +2,7 @@
 console.log('gallery controller loaded');
 
 
+// this function renders the new meme gallery
 function renderGallery() {
     var imgs = getImgsToDisplay()
 
@@ -16,6 +17,8 @@ function renderGallery() {
     elGallery.innerHTML = strHTMLs.join('')
 }
 
+
+// this function renders the img gallery for the editor
 function renderImgBox() {
     var imgs = getImgsToDisplay()
 
@@ -23,39 +26,77 @@ function renderImgBox() {
         `<div class="img-box img${img.id}">
         <img onclick="onChangeImg(${img.id})" src="${img.url}" alt="" srcset="">
         </div>`
-        
     )
 
     var elGallery = document.querySelector('.img-box-container')
     elGallery.innerHTML = strHTMLs.join('')
 }
 
+// this function renders the user saved memes gallery
+function renderUserMemes() {
+    var memes = loadUserMemes()
+    if (!memes) return // if user have no memes, return
+    
+    var strHTMLs = []
+    memes.forEach((meme, idx) => {
+        var strHtml = `<div class="gallery-img }">
+        <img onclick="OnMemeLoad(${idx})" src="assets/meme-img/${meme.selectedImgId}.jpg" alt="" srcset="">
+        </div>`
+        strHTMLs.push(strHtml)
+    })
+
+    var elUserMemes = document.querySelector('.gallery')
+    elUserMemes.innerHTML = strHTMLs.join('')
+    var elImgBox = document.querySelector('.img-box-container') 
+    elImgBox.classList.add('hidden')
+    renderImgBox()  
+    document.body.classList.add('modal-open');
+}
+
 function onImgSelect(imgId) {
     document.body.classList.remove('modal-open');
     setImg(imgId)
-    createMeme(getImgById(imgId),false)
+    _createMeme(getImgById(imgId),false)
+    resetCurrMeme()
     renderMeme()
-    var elImgBox = document.querySelector('.img-box-container')
-    elImgBox.classList.remove('hidden')
-    renderImgBox()    
+    
+    renderImgBox()
+    _openImgBox()    
 }
 
 function onGenerateRandomMeme() {
     document.body.classList.remove('modal-open');
     var memeImg = getRandomImg()
-    createMeme(memeImg, true)
+    _createMeme(memeImg, true)
     resetCurrMeme()
     renderMeme()
-    var elImgBox = document.querySelector('.img-box-container')
-    elImgBox.classList.remove('hidden')
-    renderImgBox()  
+    
+    renderImgBox()
+    _openImgBox()  
 }
 
 
 function onOpenGallery() {
     renderGallery()
-    var elImgBox = document.querySelector('.img-box-container')
-    elImgBox.classList.add('hidden')
+    _closeImgBox()
     document.body.classList.add('modal-open');
     
+}
+
+function onChangeImg(img) {
+    console.log('changing img', img);
+    setImg(img)
+    renderMeme()
+}
+
+
+// controls the img box apprance 
+function _closeImgBox(){
+    var elImgBox = document.querySelector('.img-box-container') 
+    elImgBox.classList.add('hidden')
+}
+
+function _openImgBox(){
+    var elImgBox = document.querySelector('.img-box-container') 
+    elImgBox.classList.remove('hidden')
 }

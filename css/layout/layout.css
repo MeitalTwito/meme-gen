@@ -47,8 +47,10 @@ main{
     gap: 1em;
 }
 
+
+
 /* mobile only */
-@media(max-width: 860px) {
+@media(max-width: 1050px) {
     .grid-container{
         height: 100vh;
         display: grid;
@@ -66,7 +68,7 @@ main{
     }
 
     canvas{
-        max-width: 100%;
+        max-width: 90%;
     }
 
     .page {
@@ -79,6 +81,50 @@ main{
         flex-direction: row;
         gap: 0.5em;
     }
-    
-    
+    .modal .modal-content {
+        width: 90%;
+        height: 90%;
+        border-radius: 3.5em;
+        box-shadow: 4px 0px 16px 0px #2f2e2e57;
+        background-color: hsla(0, 0%, 100%, 0.938);
+        padding: 0 3em 3em 3em;
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav.modal-head {
+        height: 100px;
+        margin-bottom: 40px;
+        margin-top: 2em;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .gallery {
+        max-height: 65%;
+
+    }
+
+    ul.modal-nav .round-btn {
+        position: absolute;
+        bottom: 10%;
+    }
+
+    ul.modal-nav .page-btn {
+        width: auto;
+        height: 50px;
+        line-height: 50px;
+        vertical-align: center;
+        box-shadow: inset 0px -6px 0 0 black;
+        margin-inline-start: 10px;
+        cursor: pointer;
+        padding-inline-start: 1em;
+        padding-inline-end: 1em;
+    }
+
+    ul.modal-nav .page-btn:hover {
+        box-shadow: inset 0px -6px 0 0 #715dfd;
+        color: #715dfd;
+
+    }
 }
