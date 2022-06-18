@@ -52,4 +52,5 @@ input.upload_btn{
 .emoji-btn{
     font-size: 3em;
     margin-inline-end: 0.2em;
+    cursor: pointer;
 }
