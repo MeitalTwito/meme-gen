@@ -40,3 +40,11 @@
 .tool-box-btn:hover{
     background-color: #e0dfec;
 }
+
+input.upload_btn{
+    position:absolute;
+    width: 2em;
+    height:3em;
+    z-index:10;
+    opacity:0;
+}

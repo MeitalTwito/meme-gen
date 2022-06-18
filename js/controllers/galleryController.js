@@ -57,22 +57,14 @@ function onImgSelect(imgId) {
     document.body.classList.remove('modal-open');
     setImg(imgId)
     _createMeme(getImgById(imgId),false)
-    resetCurrMeme()
-    renderMeme()
-    
-    renderImgBox()
-    _openImgBox()    
+    _displayEditor()  
 }
 
 function onGenerateRandomMeme() {
     document.body.classList.remove('modal-open');
     var memeImg = getRandomImg()
     _createMeme(memeImg, true)
-    resetCurrMeme()
-    renderMeme()
-    
-    renderImgBox()
-    _openImgBox()  
+    _displayEditor()    
 }
 
 
@@ -86,9 +78,9 @@ function onOpenGallery() {
 function onChangeImg(img) {
     console.log('changing img', img);
     setImg(img)
+    _resetUserImg()
     renderMeme()
 }
-
 
 // controls the img box apprance 
 function _closeImgBox(){
@@ -99,4 +91,13 @@ function _closeImgBox(){
 function _openImgBox(){
     var elImgBox = document.querySelector('.img-box-container') 
     elImgBox.classList.remove('hidden')
+}
+
+// Gets everything ready
+function _displayEditor() {
+    resetCurrMeme()
+    _resetUserImg()
+    renderMeme()
+    renderImgBox()
+    _openImgBox()  
 }

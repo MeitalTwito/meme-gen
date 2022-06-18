@@ -29,17 +29,20 @@
     <div class="grid-container">
         <header class="main-header flex space-between">
             <div class="logo">Meme<span>Gen</span>.</div>
-            <nav class="flex align-center">
-                <ul class="clean-list flex">
+
+                <ul class="flex clean-list align-center">
                     <li class="download-btn header-btn" > <img src="assets/icons/download.svg" alt="" srcset=""> <span>download</span></li>
+                    <li class="header-btn share-btn"><img src="assets/icons/share.svg" alt="" srcset=""> <span>share</span> </li>
                     <li class="header-btn" onclick="OnSaveMeme()"><img class="test" src="assets/icons/diskette.svg" alt="" srcset=""> <span>save Meme</span></li>
                 </ul>
-            </nav>
+
         </header>
         <div class="page">
             <ul class="clean-list flex align-center">
                 <li class="page-nav-btn" onclick="renderUserMemes()"><img src="assets/icons/open-folder.svg" alt="" srcset=""></li>
                 <li class="page-nav-btn" onclick="onOpenGallery()"><img src="assets/icons/add-file.svg" alt="" srcset=""></li>
+                <li class="page-nav-btn"><input class="upload_btn" type="file" name="image" onchange="onImgInput(event)"/><img src="assets/icons/upload.svg" alt="" srcset=""></li>
+
             </ul>
         </div>
 
