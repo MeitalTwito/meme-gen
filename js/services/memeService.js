@@ -210,5 +210,15 @@ function _createLines(isRandom, lineNum = 2) {
 }
 
 
+function addEmoji(emoji) {
+    var line = {
+        txt: emoji,
+        size: 60,
+        align: 'center',
+        color: 'black',
+    }
+    gMeme.lines.push(line)
+    gMeme.selectedLineIdx = gLineIdx = (gMeme.lines.length -1 < 0) ? 0:gMeme.lines.length -1
 
+}
 

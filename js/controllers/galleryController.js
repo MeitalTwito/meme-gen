@@ -17,6 +17,17 @@ function renderGallery() {
     elGallery.innerHTML = strHTMLs.join('')
 }
 
+function renderEmojiBar() {
+    var emojis = getEmojis()
+
+    var strHTMLs = emojis.map(emoji =>
+        `<li class="emoji-btn" onclick="onAddEmoji('${emoji}')">${emoji}</li>`
+        
+    )
+
+    var elGallery = document.querySelector('.emoji-bar')
+    elGallery.innerHTML = strHTMLs.join('')
+}
 
 // this function renders the img gallery for the editor
 function renderImgBox() {
@@ -98,6 +109,7 @@ function _displayEditor() {
     resetCurrMeme()
     _resetUserImg()
     renderMeme()
+    renderEmojiBar()
     renderImgBox()
     _openImgBox()  
 }

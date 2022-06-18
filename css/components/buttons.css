@@ -48,3 +48,8 @@ input.upload_btn{
     z-index:10;
     opacity:0;
 }
+
+.emoji-btn{
+    font-size: 3em;
+    margin-inline-end: 0.2em;
+}

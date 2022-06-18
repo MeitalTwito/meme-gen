@@ -128,6 +128,11 @@ function alignText(value) {
     renderMeme()
 }
 
+function onAddEmoji(emoji){
+    console.log('adding emoji');
+    addEmoji(emoji)
+    renderMeme()
+}
 
 // these functions handle downloading, sharing and uploading memes 
 function OnDownloadMeme() {

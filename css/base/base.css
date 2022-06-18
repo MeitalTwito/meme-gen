@@ -50,7 +50,7 @@ canvas{
     padding: 0.5em;
 }
 
-.line-control{
+.line-control, .text-control, .emoji-bar{
     margin-block-end: 2em;
 }
 
