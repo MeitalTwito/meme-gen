@@ -80,10 +80,10 @@
         </main>
         <aside class="tools-box flex align-center">
             <div class="line-control">
+                <h4>Edit Lines</h4>
                 <form oninput="renderTextInput()" onsubmit="clearInputBox(event)">
                     <input type="text" name="line-txt" class="line-txt" placeholder="eneter your text here" />
                 </form>
-    
                 <ul class="line-control-btns clean-list flex">
                     <li class="tool-box-btn" onclick="OnMoveLine(1)"><img src="assets/icons/down-arrow.svg" alt="" srcset=""></li>
                     <li class="tool-box-btn" onclick="OnMoveLine(-1)"><img src="assets/icons/up-arrow.svg" alt="" srcset=""></li>
@@ -94,6 +94,7 @@
 
             </div>
             <div class="text-control">
+                <h4>Customize Text</h4>
                 <select onchange="changeFont(value)" name="fonts" id="fonts">
                     <option value="impact">Impact</option>
                     <option value="Arial">Arial</option>

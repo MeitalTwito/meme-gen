@@ -56,7 +56,9 @@ main{
         'box'
         'img'
     }
-
+    h4{
+        display: none;
+    }
     header {
         box-shadow:  0px -2px 6px 0px #aaaaaa;
         align-items: center;
