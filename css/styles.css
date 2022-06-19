@@ -1,6 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 /* helpers */
 @import url(helpers/helpers.css);
@@ -13,7 +14,7 @@
 @import url(components/color-input.css);
 @import url(components/modal.css);
 @import url(components/logo.css);
-@import url(components/header.css);
+@import url(components/main-componants.css);
 @import url(components/buttons.css);
 
 /* fonts */

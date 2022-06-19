@@ -34,10 +34,8 @@ body.modal-open .modal {
 
 nav.modal-head {
     height: 100px;
-    margin-bottom: 40px;
     align-content: flex-start;
 }
-
 
 ul.modal-nav .page-btn {
     width: auto;
@@ -52,16 +50,22 @@ ul.modal-nav .page-btn {
 }
 
 ul.modal-nav .page-btn:hover {
-    box-shadow: inset 0px 7px 0 0 #715dfd;
-    color: #715dfd;
+    box-shadow: inset 0px 7px 0 0 #5865F2;
+    color: #5865F2;
+}
+
+ul.modal-nav .page-btn.clicked {
+    box-shadow: inset 0px 7px 0 0 #5865F2;
+    color: #5865F2;
 }
 
 ul.modal-nav .round-btn {
     width: auto;
-    background-color: #715dfd;
+    background-color: #5865F2;
     margin-inline-start: 2em;
     padding: 0.5em;
     border-radius: 5em;
     color: white;
     cursor: pointer;
+    z-index: 1;
 }

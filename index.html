@@ -13,22 +13,43 @@
     <section class="modal flex align-center">
         <div class="modal-content">
             <nav class="modal-head flex space-between">
-                <div class="logo flex align-center">Meme<span>Gen</span>.</div>
+                <div class="logo flex align-center"><img src="assets/icons/boxes.svg" alt="" srcset=""> Meme<span>Gen</span>.</div>
                 
                 <ul class="modal-nav clean-list flex align-center">
-                    <li class="page-btn" onclick="renderUserMemes()">Memes</li>
-                    <li class="page-btn" onclick="onOpenGallery()">Gallery</li>
+                    <li class="page-btn" id="gallery-btn" onclick="onOpenGallery()">Gallery</li>
+                    <li class="page-btn meme-btn" onclick="renderUserMemes()">My Memes</li>
+
                     <li class="round-btn" onclick="onGenerateRandomMeme()">Random Meme</li>
                 </ul>
             </nav>
-            
+            <datalist id="img-category">
+                <option value="Funny"/>
+                <option value="Dog" />
+                <option value="Cat" />
+                <option value="Woman" />
+                <option value="Man" />
+                <option value="Baby" />
+                <option value="President" />
+                <option value="USA" />
+                <option value="Israel" />
+                <option value="Russia" />
+                <option value="Movie" />
+                <option value="Fight" />
+
+            </datalist>
+            <input class="search-bar" oninput="onSetFilterByGallery(this.value)" type="search" id="search-img" name="search-img" list="img-category" placeholder="Search images"/>
+            <div class="search-words-holder flex justify-center">
+                <ul class="search-values clean-list flex align-center">
+ 
+                </ul>
+            </div>
             <div class="gallery">
             </div>
         </div>
     </section>
     <div class="grid-container">
         <header class="main-header flex space-between">
-            <div class="logo">Meme<span>Gen</span>.</div>
+            <div class="logo flex align-center"><img src="assets/icons/boxes.svg" alt="" srcset="">Meme<span>Gen</span>.</div>
 
                 <ul class="flex clean-list align-center">
                     <li class="download-btn header-btn" > <img src="assets/icons/download.svg" alt="" srcset=""> <span>download</span></li>
@@ -47,7 +68,8 @@
         </div>
 
         <aside class="img-holder">
-            
+            <input oninput="onSetFilterByImgBox(this.value)" type="search" id="search-img" name="search-img" list="img-category" placeholder="Search images"/>
+
             <section class="img-box-container flex">gallery</section>
         </aside>
         <main class="editor-media">

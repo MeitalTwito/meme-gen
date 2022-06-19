@@ -1,10 +1,20 @@
 .logo{
-    font-family: 'Leckerli One', cursive;
-    font-size: 2em;
-    color:  #230a3f;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    color:  #2d2d2d;
 }
 
 .logo span{
-    color: #715dfd;
-    ;
+    color: #5865F2;
+}
+
+.logo img{
+    max-width: 1.2em;
+    margin-inline-end: 0.2em;
+}
+
+
+.modal-head .logo{
+    font-size: 1.7em;
 }

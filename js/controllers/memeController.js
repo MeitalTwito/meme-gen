@@ -192,7 +192,8 @@ function onShareMeme() {
             //Encode the instance of certain characters in the url
             const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
             const link = document.createElement('a')
-            link.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}" title="Share on Facebook" target="_blank"`
+            link.href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}"`
+            link.target = '_blank'
             link.open = `https://www.facebook.com/sharer/sharer.php?u=${uploadedImgUrl}&t=${uploadedImgUrl}`
             link.click()
             console.log(encodedUploadedImgUrl);

@@ -2,6 +2,17 @@
 console.log('gallery service loaded');
 
 const gEmojis =['😂', '😅', '😍', '😎', '😡', '😳', '🤩', '🤯', '🧐', '😜', '😰', '🥶', '🤮', '😵‍💫','🤡','👿','😈','💩','👻','🤖']
+const gSearchWords = [
+    {value:'usa', size: 0.5},
+    {value:'cute', size: 1},
+    {value:'dog', size: 0.9},
+    {value:'baby', size: 2.2},
+    {value:'cat', size: 0.7},
+    {value:'movie', size: 1},
+    {value:'man', size: 1.5},
+    {value:'president', size: 0.5},
+    {value:'woman', size: 1.7},
+]
 
 const gImgs = [
     {id: 1, url: 'assets/meme-img/1.jpg', keywords: ['usa', 'president']},
@@ -24,16 +35,42 @@ const gImgs = [
     {id: 18, url: 'assets/meme-img/18.jpg', keywords: ['disney', 'movie']},
     {id: 19, url: 'assets/meme-img/19.jpg', keywords: ['cute', 'dog']},
     {id: 20, url: 'assets/meme-img/20.jpg', keywords: ['funny', 'man']},
-    {id: 22, url: 'assets/meme-img/22.jpg', keywords: ['cute', 'dog']},
-    {id: 23, url: 'assets/meme-img/23.jpg', keywords: ['cute', 'dog']},
-    {id: 24, url: 'assets/meme-img/24.jpg', keywords: ['cute', 'dog']},
-    {id: 25, url: 'assets/meme-img/25.jpg', keywords: ['cute', 'dog']},
+    {id: 22, url: 'assets/meme-img/22.jpg', keywords: ['funny', 'woman']},
+    {id: 23, url: 'assets/meme-img/23.jpg', keywords: ['movie', 'man']},
+    {id: 24, url: 'assets/meme-img/24.jpg', keywords: ['cute', 'baby']},
+    {id: 25, url: 'assets/meme-img/25.jpg', keywords: ['usa', 'president']},
+    {id: 26, url: 'assets/meme-img/26.jpg', keywords: ['usa', 'woman']},
 
 ]
 
+var gFilter
+
 function getImgsToDisplay() {
-    return gImgs
+    var imgs = gImgs
+    if (gFilter && gFilter !== ''){
+        console.log('filtering');
+        imgs = imgs.filter(img => {
+            var filtered =  img.keywords.filter(keyWord => {
+                return keyWord.startsWith(gFilter.toLowerCase())
+            })
+            return filtered.length > 0
+        })
+    }
+    return imgs
 }
+
+function setFilterBy(filter) {
+    gFilter = filter
+}
+
+function getSearchWords() {
+    return gSearchWords
+}
+
+function getSearchWordByValue(value) {
+    return gSearchWords.find(word => word.value === value)
+}
+
 
 function getEmojis() {
     return gEmojis
