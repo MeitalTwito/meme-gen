@@ -41,6 +41,7 @@ function renderSearchBar() {
 //These Functions filter the gallery Imgs 
 function onSearchWord(value) {
     setFilterBy(value)
+    document.querySelector('.search-bar').value = value
     var searchWord = getSearchWordByValue(value)
 
     if(searchWord.size < 3){
